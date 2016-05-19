@@ -18,8 +18,10 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,7 @@ public class GlobalApplication extends Application {
     public CameraPosition CamPos;
     public String ServerResponse;
     public Vector tuerme = new Vector();
+    private Vector marker;
 
     GlobalApplication(){
         Log.i("DLRGMaps", "START");
@@ -128,17 +131,19 @@ public class GlobalApplication extends Application {
                         String[] turmstati = response.split(";");
                         Log.i("DLRGMaps", "Anzahl der Tuerme: "+turmstati.length);
                         for(int i = 0;i<turmstati.length; i++){
-                            Log.i("DLRGMaps", "Setze Turm Nummer: "+i+1);
+                            Log.i("DLRGMaps", "Setze Turm Nummer: "+(i+1));
                             Log.i("DLRGMaps", "RESPONSE: "+turmstati[i].toString());
                             String[] statuspart = turmstati[i].split(",");
                             Log.i("DLRGMaps", "RESPONSE: "+statuspart[0].toString());
                             int turmnummer = Integer.parseInt(statuspart[0].toString());
                             int status = Integer.parseInt(statuspart[1].toString());
 
+                            updateView(turmnummer-1,status);
+
                             Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer-1);
                             test.status = status;
                         }
-
+                        //marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.gelb));
                         GlobalApplication.getInstance().ServerResponse = response;
                     }
                 },
@@ -173,6 +178,34 @@ public class GlobalApplication extends Application {
 
         mRequestQueue.add(stringRequest);
 
+    }
+
+    public void updateView(int nummer, int status){
+        Marker changemarker = (Marker)marker.elementAt(nummer);
+        if (status == 0){
+            //Log.i("DLRGMaps", "Logo ");
+
+            changemarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.logo));
+        }
+        else if (status == 1){
+            //Log.i("DLRGMaps", "Flagge normal");
+
+            changemarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.normal));
+        }
+        else if (status == 2){
+            //Log.i("DLRGMaps", "Flagge gelb");
+
+            changemarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.gelb));
+        }
+        else if (status == 3){
+            //Log.i("DLRGMaps", "Flagge rot");
+
+            changemarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.rot));
+        }
+    }
+
+    public void setMarker(Vector m){
+        marker = m;
     }
 
     @Override

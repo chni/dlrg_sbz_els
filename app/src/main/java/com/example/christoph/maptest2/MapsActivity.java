@@ -178,24 +178,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
+        Vector markersfuerview = new Vector();
 
-        mMap.addMarker(t1marker);
-        mMap.addMarker(t2marker);
-        mMap.addMarker(t3marker);
-        mMap.addMarker(t4marker);
-        mMap.addMarker(t5marker);
-        mMap.addMarker(t6marker);
-        mMap.addMarker(t7marker);
-        mMap.addMarker(t8marker);
-        mMap.addMarker(t9marker);
-        mMap.addMarker(t10marker);
-        mMap.addMarker(t11marker);
-        mMap.addMarker(t12marker);
-        mMap.addMarker(t13marker);
-        mMap.addMarker(pmarker);
-        mMap.addMarker(odfmarker);
+        Marker t1m = mMap.addMarker(t1marker);
+        markersfuerview.add(t1m);
+        Marker t2m = mMap.addMarker(t2marker);
+        markersfuerview.add(t2m);
+        Marker t3m = mMap.addMarker(t3marker);
+        markersfuerview.add(t3m);
+        Marker t4m = mMap.addMarker(t4marker);
+        markersfuerview.add(t4m);
+        Marker t5m = mMap.addMarker(t5marker);
+        markersfuerview.add(t5m);
+        Marker t6m = mMap.addMarker(t6marker);
+        markersfuerview.add(t6m);
+        Marker t7m = mMap.addMarker(t7marker);
+        markersfuerview.add(t7m);
+        Marker t8m = mMap.addMarker(t8marker);
+        markersfuerview.add(t8m);
+        Marker t9m = mMap.addMarker(t9marker);
+        markersfuerview.add(t9m);
+        Marker t10m = mMap.addMarker(t10marker);
+        markersfuerview.add(t10m);
+        Marker t11m = mMap.addMarker(t11marker);
+        markersfuerview.add(t11m);
+        Marker t12m = mMap.addMarker(t12marker);
+        markersfuerview.add(t12m);
+        Marker t13m = mMap.addMarker(t13marker);
+        markersfuerview.add(t13m);
+        Marker pm = mMap.addMarker(pmarker);
+        markersfuerview.add(pm);
+        Marker om = mMap.addMarker(odfmarker);
+        markersfuerview.add(om);
 
-        //t1marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.rot));
+
+        GlobalApplication.getInstance().setMarker(markersfuerview);
+        //t1m.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.rot));
 
 
         //MarkerOptions hwmarker2 = new MarkerOptions().position(scharbeutz).title("die HW in Scharbeutz 2");
