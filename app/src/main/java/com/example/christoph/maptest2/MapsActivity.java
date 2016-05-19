@@ -14,12 +14,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
+
+
+//int reqcomplete;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
@@ -52,6 +56,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        //Log.i("DLRGMaps", test);
     }
 
 
@@ -67,6 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
@@ -147,24 +154,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         {
             Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(i);
             MarkerOptions testmarker = (MarkerOptions)markers.elementAt(i);
-            Log.i("DLRGMaps", GlobalApplication.getInstance().tuerme.elementAt(i).toString());
+            //Log.i("DLRGMaps", GlobalApplication.getInstance().tuerme.elementAt(i).toString());
             if (test.status == 0){
-                Log.i("DLRGMaps", "Logo ");
+                //Log.i("DLRGMaps", "Logo ");
 
                 testmarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.logo));
             }
             else if (test.status == 1){
-                Log.i("DLRGMaps", "Flagge normal");
+                //Log.i("DLRGMaps", "Flagge normal");
 
                 testmarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.normal));
             }
             else if (test.status == 2){
-                Log.i("DLRGMaps", "Flagge gelb");
+                //Log.i("DLRGMaps", "Flagge gelb");
 
                 testmarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gelb));
             }
             else if (test.status == 3){
-                Log.i("DLRGMaps", "Flagge rot");
+                //Log.i("DLRGMaps", "Flagge rot");
 
                 testmarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.rot));
             }
@@ -188,6 +195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(pmarker);
         mMap.addMarker(odfmarker);
 
+        //t1marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.rot));
 
         //MarkerOptions hwmarker2 = new MarkerOptions().position(scharbeutz).title("die HW in Scharbeutz 2");
 
@@ -203,7 +211,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.i("DLRGMaps", "Start der MapActivity ");
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
+
+        GlobalApplication.getInstance().getStatefromServer();
+
     }
+
+
 
     @Override
     public boolean onMarkerClick(Marker arg0) {
@@ -284,4 +297,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
+
+
 }

@@ -4,17 +4,32 @@ package com.example.christoph.maptest2;
  * Created by christoph on 08.05.16.
  */
 import android.app.Application;
+import android.util.Base64;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 public class GlobalApplication extends Application {
 
     public String helloFromGlobalApplication = "Daten aus der Globalen App.";
     public CameraPosition CamPos;
+    public String ServerResponse;
     public Vector tuerme = new Vector();
 
     GlobalApplication(){
@@ -26,6 +41,8 @@ public class GlobalApplication extends Application {
         CameraPosition oldPos = new CameraPosition(center,(float)13.868389,0,0);
 
         CamPos = CameraPosition.builder(oldPos).bearing((float) rotation).build();
+
+        //getStatefromServer();
 
         Turm t1 = new Turm();
         t1.status = 0;
@@ -81,6 +98,81 @@ public class GlobalApplication extends Application {
 
     public static GlobalApplication getInstance() {
         return singleton;
+    }
+
+    public void getStatefromServer(){
+        RequestQueue mRequestQueue;
+
+// Instantiate the cache
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+        Network network = new BasicNetwork(new HurlStack());
+
+// Instantiate the RequestQueue with the cache and network.
+        mRequestQueue = new RequestQueue(cache, network);
+
+// Start the queue
+        mRequestQueue.start();
+
+        String url ="http://h2145564.stratoserver.net/flags2/appserver.php";
+
+        GlobalApplication.getInstance().ServerResponse = "";
+
+// Formulate the request and handle the response.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("DLRGMaps", "RESPONSE: "+response);
+                        String[] turmstati = response.split(";");
+                        Log.i("DLRGMaps", "Anzahl der Tuerme: "+turmstati.length);
+                        for(int i = 0;i<turmstati.length; i++){
+                            Log.i("DLRGMaps", "Setze Turm Nummer: "+i+1);
+                            Log.i("DLRGMaps", "RESPONSE: "+turmstati[i].toString());
+                            String[] statuspart = turmstati[i].split(",");
+                            Log.i("DLRGMaps", "RESPONSE: "+statuspart[0].toString());
+                            int turmnummer = Integer.parseInt(statuspart[0].toString());
+                            int status = Integer.parseInt(statuspart[1].toString());
+
+                            Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer-1);
+                            test.status = status;
+                        }
+
+                        GlobalApplication.getInstance().ServerResponse = response;
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                //add params <key,value>
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+                // add headers <key,value>
+                String credentials = "paul"+":"+"hudson";
+                String auth = "Basic "
+                        + Base64.encodeToString(credentials.getBytes(),
+                        Base64.NO_WRAP);
+                headers.put("Authorization", auth);
+                return headers;
+            }
+        };
+
+
+// Add the request to the RequestQueue.
+
+        mRequestQueue.add(stringRequest);
+
     }
 
     @Override
