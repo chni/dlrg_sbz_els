@@ -197,6 +197,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //t1marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.rot));
 
+
         //MarkerOptions hwmarker2 = new MarkerOptions().position(scharbeutz).title("die HW in Scharbeutz 2");
 
         //mMap.addMarker(hwmarker);
