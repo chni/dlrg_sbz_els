@@ -93,7 +93,8 @@ public class GlobalApplication extends Application {
         odf.status = 0;
         tuerme.add(odf);
 
-
+        //UpdateScheduler up = new UpdateScheduler(this);
+        new Thread(new UpdateScheduler(this)).start();
 
     }
 
