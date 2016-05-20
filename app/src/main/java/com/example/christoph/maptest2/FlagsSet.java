@@ -15,6 +15,7 @@ public class FlagsSet extends AppCompatActivity {
 
     Turm turm = new Turm();
 
+    int turmnummer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +24,9 @@ public class FlagsSet extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent mIntent = getIntent();
-        final int turmnummer = mIntent.getIntExtra("TurmNummer", 0);
+        turmnummer = mIntent.getIntExtra("TurmNummer", 0);
 
         Log.i("DLRGMaps", "FlagSet " + turmnummer);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +36,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 1;
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,1,2);
             }
         });
 
@@ -48,6 +49,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 0;
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,0,2);
             }
         });
 
@@ -59,6 +61,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 2;
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,2,2);
             }
         });
         FloatingActionButton fab4 = (FloatingActionButton) findViewById(R.id.fab4);
@@ -70,6 +73,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 3;
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,3,2);
             }
         });
 
@@ -77,18 +81,10 @@ public class FlagsSet extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        FlagsSet.super.onBackPressed();
-                    }
-                }).create().show();
+    public void onBackPressed() {//force update of view
+        Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
+        GlobalApplication.getInstance().updateView(turmnummer,test.status);
+        finish();
     }
 
     public void setTurm(Turm cturm){

@@ -104,7 +104,7 @@ public class GlobalApplication extends Application {
         return singleton;
     }
 
-    public void getStatefromServer(){
+    public void getStatefromServer(int tn, int st, int grund){ // wenn tn == 0, nur abfrage, sonst setzen des Turms
         RequestQueue mRequestQueue;
 
 // Instantiate the cache
@@ -120,7 +120,12 @@ public class GlobalApplication extends Application {
         mRequestQueue.start();
 
         String url ="http://h2145564.stratoserver.net/flags2/appserver.php";
+        if (tn!=0){
+            url = url+"?turm="+tn+"&status="+st+"&grund="+grund;
+            Log.i("DLRGMaps", "URL: "+url);
+        }
 
+        //
         GlobalApplication.getInstance().ServerResponse = "";
 
 // Formulate the request and handle the response.
@@ -128,14 +133,14 @@ public class GlobalApplication extends Application {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("DLRGMaps", "RESPONSE: "+response);
+                        //Log.i("DLRGMaps", "RESPONSE: "+response);
                         String[] turmstati = response.split(";");
-                        Log.i("DLRGMaps", "Anzahl der Tuerme: "+turmstati.length);
+                        //Log.i("DLRGMaps", "Anzahl der Tuerme: "+turmstati.length);
                         for(int i = 0;i<turmstati.length; i++){
-                            Log.i("DLRGMaps", "Setze Turm Nummer: "+(i+1));
-                            Log.i("DLRGMaps", "RESPONSE: "+turmstati[i].toString());
+                            //Log.i("DLRGMaps", "Setze Turm Nummer: "+(i+1));
+                            //Log.i("DLRGMaps", "RESPONSE: "+turmstati[i].toString());
                             String[] statuspart = turmstati[i].split(",");
-                            Log.i("DLRGMaps", "RESPONSE: "+statuspart[0].toString());
+                            //Log.i("DLRGMaps", "RESPONSE: "+statuspart[0].toString());
                             int turmnummer = Integer.parseInt(statuspart[0].toString());
                             int status = Integer.parseInt(statuspart[1].toString());
 
@@ -176,8 +181,13 @@ public class GlobalApplication extends Application {
 
 
 // Add the request to the RequestQueue.
+        //mRequestQueue = null;
+        //System.gc();
+        //mRequestQueue = new RequestQueue(cache, network);
+
 
         mRequestQueue.add(stringRequest);
+
 
     }
 

@@ -231,7 +231,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 
-        GlobalApplication.getInstance().getStatefromServer();
+        GlobalApplication.getInstance().getStatefromServer(0,0,0);
 
     }
 

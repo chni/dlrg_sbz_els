@@ -25,8 +25,8 @@ public class UpdateScheduler implements Runnable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-                app.getStatefromServer();
-                Log.i("DLRGMaps", "Update");
+                app.getStatefromServer(0,0,0);
+                //Log.i("DLRGMaps", "Update");
         }
     }
 }
