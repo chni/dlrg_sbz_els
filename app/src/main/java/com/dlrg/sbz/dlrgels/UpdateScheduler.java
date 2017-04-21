@@ -1,11 +1,9 @@
-package com.example.christoph.maptest2;
+package com.dlrg.sbz.dlrgels;
 
 import android.util.Log;
 
-import java.util.Vector;
-
 /**
- * Created by christoph on 19.05.16.
+ * Created by sbz on 19.05.16.
  */
 
 public class UpdateScheduler implements Runnable {

@@ -1,7 +1,7 @@
-package com.example.christoph.maptest2;
+package com.dlrg.sbz.dlrgels;
 
 /**
- * Created by christoph on 08.05.16.
+ * Created by Christoph Nienann on 08.05.16.
  */
 import android.app.Application;
 import android.util.Base64;
@@ -123,6 +123,7 @@ public class GlobalApplication extends Application {
         if (tn!=0){
             url = url+"?turm="+tn+"&status="+st+"&grund="+grund;
             Log.i("DLRGMaps", "URL: "+url);
+
         }
 
         //

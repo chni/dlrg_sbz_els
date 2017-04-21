@@ -1,7 +1,7 @@
-package com.example.christoph.maptest2;
+package com.dlrg.sbz.dlrgels;
 
 /**
- * Created by christoph on 09.05.16.
+ * Created by sbz on 09.05.16.
  */
 public class Turm {
     public int status;

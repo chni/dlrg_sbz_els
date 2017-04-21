@@ -1,4 +1,4 @@
-package com.example.christoph.maptest2;
+package com.dlrg.sbz.dlrgels;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

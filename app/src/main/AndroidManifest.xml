@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.christoph.maptest2">
+    package="com.dlrg.sbz.dlrgels">
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <permission
-        android:name="com.example.christoph.maptest2.permission.MAPS_RECEIVE"
+        android:name="com.dlrg.sbz.dlrgels.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.christoph.maptest2.permission.MAPS_RECEIVE" />
@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name = "com.example.christoph.maptest2.GlobalApplication">
+        android:name = "com.dlrg.sbz.dlrgels.GlobalApplication">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -36,7 +36,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.dlrg.sbz.dlrgels.MapsActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,13 +45,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FlagsSet"
+            android:name="com.dlrg.sbz.dlrgels.FlagsSet"
             android:label="@string/title_activity_flags_set"
-            android:parentActivityName=".MapsActivity"
+            android:parentActivityName="com.dlrg.sbz.dlrgels.MapsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.christoph.maptest2.MapsActivity" />
+                android:value="com.dlrg.sbz.dlrgels.MapsActivity" />
         </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

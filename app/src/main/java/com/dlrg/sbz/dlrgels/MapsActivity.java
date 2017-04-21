@@ -1,4 +1,4 @@
-package com.example.christoph.maptest2;
+package com.dlrg.sbz.dlrgels;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,8 +18,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 
@@ -292,7 +290,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.christoph.maptest2/http/host/path")
+                Uri.parse("android-app://com.dlrg.sbz.dlrgels/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -311,7 +309,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.christoph.maptest2/http/host/path")
+                Uri.parse("android-app://com.dlrg.sbz.dlrgels/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
