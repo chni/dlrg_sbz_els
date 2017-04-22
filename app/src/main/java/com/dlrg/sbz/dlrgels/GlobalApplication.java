@@ -92,6 +92,39 @@ public class GlobalApplication extends Application {
         Turm odf = new Turm();
         odf.status = 0;
         tuerme.add(odf);
+        Turm tdf1 = new Turm();
+        tdf1.status = 0;
+        tuerme.add(tdf1);
+        Turm tdf2 = new Turm();
+        tdf2.status = 0;
+        tuerme.add(tdf2);
+        Turm tdf3 = new Turm();
+        tdf3.status = 0;
+        tuerme.add(tdf3);
+        Turm tdf4 = new Turm();
+        tdf4.status = 0;
+        tuerme.add(tdf4);
+        Turm tdf5 = new Turm();
+        tdf5.status = 0;
+        tuerme.add(tdf5);
+        Turm tdf6 = new Turm();
+        tdf6.status = 0;
+        tuerme.add(tdf6);
+        Turm tdf7 = new Turm();
+        tdf7.status = 0;
+        tuerme.add(tdf7);
+        Turm tdf9 = new Turm();
+        tdf9.status = 0;
+        tuerme.add(tdf9);
+        Turm tdf10 = new Turm();
+        tdf10.status = 0;
+        tuerme.add(tdf10);
+        Turm tdf11 = new Turm();
+        tdf11.status = 0;
+        tuerme.add(tdf11);
+        Turm tdf12 = new Turm();
+        tdf12.status = 0;
+        tuerme.add(tdf12);
 
         //UpdateScheduler up = new UpdateScheduler(this);
         new Thread(new UpdateScheduler(this)).start();
@@ -119,7 +152,7 @@ public class GlobalApplication extends Application {
 // Start the queue
         mRequestQueue.start();
 
-        String url ="http://h2145564.stratoserver.net/flags2/appserver.php";
+        String url ="http://h2145564.stratoserver.net/flags2017/appserver.php";
         if (tn!=0){
             url = url+"?turm="+tn+"&status="+st+"&grund="+grund;
             Log.i("DLRGMaps", "URL: "+url);
@@ -171,7 +204,7 @@ public class GlobalApplication extends Application {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 // add headers <key,value>
-                String credentials = "paul"+":"+"hudson";
+                String credentials = "wrd"+":"+"wrdpw2017";
                 String auth = "Basic "
                         + Base64.encodeToString(credentials.getBytes(),
                         Base64.NO_WRAP);
