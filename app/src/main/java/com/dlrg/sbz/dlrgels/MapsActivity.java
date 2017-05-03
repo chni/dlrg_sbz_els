@@ -2,9 +2,13 @@ package com.dlrg.sbz.dlrgels;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -20,13 +24,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Vector;
 
-
 //int reqcomplete;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
     //private CameraPosition CamPos;
+
+    Vector markersfuerview = new Vector();
 
     MapsActivity(){
 
@@ -38,6 +43,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+
+    private void showmarkers()
+    {
+
+        for(int i =0; i < markersfuerview.size(); i++)
+        {
+            Log.i("DLRGMaps", "Zeige Marker ");
+            Marker testmarker = (Marker)markersfuerview.elementAt(1);
+            testmarker.showInfoWindow();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +72,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         //Log.i("DLRGMaps", test);
+//        Button button = (Button) findViewById(R.id.mapsbutton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Hier", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//                showmarkers();
+//            }
+//        });
     }
 
 
@@ -113,26 +138,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng odf = new LatLng(53.94663582094221, 10.77440980821848);
         positions.add(odf);
         LatLng tdf1 = new LatLng(54.00750158353872, 10.773867331445217);
+        //Surfschule Timmendorf
         positions.add(tdf1);
         LatLng tdf2 = new LatLng(54.00521158153442, 10.77626422047615);
+        //Milchhaus
         positions.add(tdf2);
         LatLng tdf3 = new LatLng(54.00082077788394, 10.781690329313278);
+        //Sportstrand
         positions.add(tdf3);
         LatLng tdf4 = new LatLng(53.998498087586256, 10.784516371786594);
+        //Sealife-Center
         positions.add(tdf4);
-        LatLng tdf5 = new LatLng(53.994046263614976, 10.793615765869617);
+        LatLng tdf5 = new LatLng(53.99641630619019,10.78828789293766);
+        //Rudi's Imbiss
         positions.add(tdf5);
-        LatLng tdf6 = new LatLng(53.99173147393295, 10.801469273865223);
+        LatLng tdf6 = new LatLng(53.994046263614976, 10.793615765869617);
+        //Teehäuschenbrücke
         positions.add(tdf6);
-        LatLng tdf7 = new LatLng(53.992077991000606, 10.806997977197172);
+        LatLng tdf7 = new LatLng(53.991718661813174,10.801498107612133);
+        //Familienstrand
         positions.add(tdf7);
         LatLng tdf9 = new LatLng(53.994518903248874, 10.812481753528118);
+        //Freistrand
         positions.add(tdf9);
         LatLng tdf10 = new LatLng(53.99452205678976, 10.818237774074078);
+        //Miramar
         positions.add(tdf10);
         LatLng tdf11 = new LatLng(53.99379614480714, 10.82508746534586);
+        //Surfschule Niendorf
         positions.add(tdf11);
         LatLng tdf12 = new LatLng(53.99242785599034, 10.83139669150114);
+        //Niendorfer Balkon
         positions.add(tdf12);
 
         Vector markers = new Vector();
@@ -174,7 +210,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markers.add(tdf2marker);
         MarkerOptions tdf3marker = new MarkerOptions().position(tdf3).title("Turm TDF 3");
         markers.add(tdf3marker);
-        MarkerOptions tdf4marker = new MarkerOptions().position(tdf4).title("Turm TDF 4");
+        MarkerOptions tdf4marker = new MarkerOptions().position(tdf4).title("HW TDF");
         markers.add(tdf4marker);
         MarkerOptions tdf5marker = new MarkerOptions().position(tdf5).title("Turm TDF 5");
         markers.add(tdf5marker);
@@ -220,9 +256,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        Vector markersfuerview = new Vector();
 
-        Marker t1m = mMap.addMarker(t1marker);
+
+        Marker t1m = mMap.addMarker(
+                t1marker
+                .title("1"));
+        t1m.showInfoWindow();
+
         markersfuerview.add(t1m);
         Marker t2m = mMap.addMarker(t2marker);
         markersfuerview.add(t2m);

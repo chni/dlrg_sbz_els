@@ -38,10 +38,10 @@ public class GlobalApplication extends Application {
     GlobalApplication(){
         Log.i("DLRGMaps", "START");
 
-        LatLng center = new LatLng(54.03986359132022,10.772223137319088);
-        double rotation = 75.0;
+        LatLng center = new LatLng(54.028012386484036,10.78430749475956);
+        double rotation = 68.0;
 
-        CameraPosition oldPos = new CameraPosition(center,(float)13.868389,0,0);
+        CameraPosition oldPos = new CameraPosition(center,(float)13.249241,0,0);
 
         CamPos = CameraPosition.builder(oldPos).bearing((float) rotation).build();
 
