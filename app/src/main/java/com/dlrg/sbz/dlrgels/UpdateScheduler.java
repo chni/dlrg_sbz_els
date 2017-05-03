@@ -22,7 +22,7 @@ public class UpdateScheduler implements Runnable {
         while(true){
             try {
                 Thread.sleep(10000);
-                Log.i("DLRGMaps", "Garbage Collector");
+                //Log.i("DLRGMaps", "Garbage Collector");
                 gc();
                 getRuntime().gc();
             } catch (InterruptedException e) {

@@ -8,10 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Spinner;
 
 public class FlagsSet extends AppCompatActivity {
 
     Turm turm = new Turm();
+
+    private Spinner spinner1;
 
     int turmnummer;
     @Override
@@ -20,6 +23,9 @@ public class FlagsSet extends AppCompatActivity {
         setContentView(R.layout.activity_flags_set);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        addListenerOnSpinnerItemSelection();
 
         Intent mIntent = getIntent();
         turmnummer = mIntent.getIntExtra("TurmNummer", 0);
@@ -34,7 +40,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 1;
-                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,1,2);
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,1,spinner1.getSelectedItemPosition());
             }
         });
 
@@ -47,7 +53,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 0;
-                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,0,2);
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,0,spinner1.getSelectedItemPosition());
             }
         });
 
@@ -59,7 +65,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 2;
-                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,2,2);
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,2,spinner1.getSelectedItemPosition());
             }
         });
         FloatingActionButton fab4 = (FloatingActionButton) findViewById(R.id.fab4);
@@ -71,7 +77,7 @@ public class FlagsSet extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
                 test.status = 3;
-                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,3,2);
+                GlobalApplication.getInstance().getStatefromServer(turmnummer+1,3,spinner1.getSelectedItemPosition());
             }
         });
 
@@ -83,6 +89,11 @@ public class FlagsSet extends AppCompatActivity {
         Turm test = (Turm)GlobalApplication.getInstance().tuerme.elementAt(turmnummer);
         GlobalApplication.getInstance().updateView(turmnummer,test.status);
         finish();
+    }
+
+    public void addListenerOnSpinnerItemSelection() {
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        //spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 
     public void setTurm(Turm cturm){

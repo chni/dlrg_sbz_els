@@ -16,11 +16,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Flaggenstatus setzen"
+        android:text="Bei rot oder gelb: zuerst Grund unten auswählen, dann auf Flagge drücken"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp" />
+        android:layout_marginTop="12dp" />
 
 
 </RelativeLayout>

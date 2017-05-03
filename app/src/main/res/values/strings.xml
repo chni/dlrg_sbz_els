@@ -61,4 +61,15 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_flags_set">Status für Turm setzen</string>
+
+    <string name="grund_prompt">Grund wählen:</string>
+
+    <string-array name="grund_arrays">
+        <item>Kein Grund</item>
+        <item>Gewitter</item>
+        <item>Seegang</item>
+        <item>Unterströmung</item>
+        <item>Ablandiger Wind</item>
+        <item>Blaualgen</item>
+    </string-array>
 </resources>
