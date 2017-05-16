@@ -39,9 +39,17 @@ public class GlobalApplication extends Application {
         Log.i("DLRGMaps", "START");
 
         LatLng center = new LatLng(54.028012386484036,10.78430749475956);
-        double rotation = 68.0;
+        //This is for tablet
+        //double rotation = 68.0;
 
-        CameraPosition oldPos = new CameraPosition(center,(float)13.249241,0,0);
+        //This is for Phone
+        double rotation = 0.0;
+
+        //for Tablet
+        //CameraPosition oldPos = new CameraPosition(center,(float)13.249241,0,0);
+
+        //for Phone
+        CameraPosition oldPos = new CameraPosition(center,(float)12.0,0,0);
 
         CamPos = CameraPosition.builder(oldPos).bearing((float) rotation).build();
 
@@ -224,6 +232,8 @@ public class GlobalApplication extends Application {
 
 
     }
+
+
 
     public void updateView(int nummer, int status){
         Marker changemarker = (Marker)marker.elementAt(nummer);

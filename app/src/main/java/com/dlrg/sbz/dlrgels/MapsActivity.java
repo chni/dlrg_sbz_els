@@ -258,11 +258,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        Marker t1m = mMap.addMarker(
-                t1marker
-                .title("1"));
-        t1m.showInfoWindow();
 
+        Marker t1m = mMap.addMarker(t1marker);
         markersfuerview.add(t1m);
         Marker t2m = mMap.addMarker(t2marker);
         markersfuerview.add(t2m);
@@ -365,7 +362,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         else if (arg0.getTitle().equals("Turm TDF 1")) tn = 15;
         else if (arg0.getTitle().equals("Turm TDF 2")) tn = 16;
         else if (arg0.getTitle().equals("Turm TDF 3")) tn = 17;
-        else if (arg0.getTitle().equals("Turm TDF 4")) tn = 18;
+        else if (arg0.getTitle().equals("HW TDF")) tn = 18;
         else if (arg0.getTitle().equals("Turm TDF 5")) tn = 19;
         else if (arg0.getTitle().equals("Turm TDF 6")) tn = 20;
         else if (arg0.getTitle().equals("Turm TDF 7")) tn = 21;
